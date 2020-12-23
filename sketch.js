@@ -16,7 +16,9 @@ function setup() {
   dog.scale = 0.25;
 
   foodStock = database.ref("Food");
-  foodStock.on("value",readStock);
+  foodStock.on("value",(data)=>{
+    foodS = data.val();
+  });
   
 }
 
@@ -24,17 +26,31 @@ function readStock(data){
   foodS = data.val();
 }
 
-function writeStock(x){
-  database.ref("/").update({Food:x});
-}
+
 function draw() {  
   background(49,139,87);
+
   if(keyWentDown(UP_ARROW)){
+    console.log(foodS)
+    
+    if(foodS<0){
+      foodS = 0
+    }else{
+      foodS= foodS-1;
+    }
     writeStock(foodS);
+    console.log("after feeding "+foodS)
+    dog.addImage(dogImg2);
+    dog.scale = 0.25;
   }
+
   fill("white");
+  text("Food Remaining :"+foodS,170,80);
   text("Note : You can use the Up-arrow to feed the dog.",10,10);
   drawSprites();
+}
+function writeStock(x){
+  database.ref("/").update({Food:x});
 }
 
 
