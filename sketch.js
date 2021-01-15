@@ -9,7 +9,7 @@ function preload()
   dogImg1 = loadImage("images/dogImg.png");
   dogImg2 = loadImage("images/dogImg1.png");
   Bedroom = loadImage("images/Bed Room.png");
-  Garden =  loadImage("images/garden.png");
+  Garden =  loadImage("images/Garden.png");
   Washroom = loadImage("images/Wash Room.png");
 }
 
